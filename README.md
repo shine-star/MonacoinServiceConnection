@@ -1,0 +1,2 @@
+# MonacoinServiceConnection
+twitter_screen_nameを元に、該当のサービスのモナコイン口座情報を取得します
