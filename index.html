@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    
+    <title>MonacoinServiceConnection Sample</title>
+    <script src="js/MonacoinServiceConnection.js"></script>
+    <style>
+        input[type=text]{
+            width:500px;
+        }
+        </style>
+  </head>
+  <body>  
+      twitter_screen_name:<input type="text" id="twitter_screen_name" value="shine_star_name"/><br>
+      monacoin_address<input type="text" id="monacoin_address" /><br>
+          <script>
+              MonacoinServiceConnection.write({
+                /**
+                 * 表示方法を設定します "button","select"のみ可能です。
+                 * @type string
+                 */
+                "type":"button",
+                /**
+                 * ボタンのテキストを設定します(typeがselectの場合のみ適用)
+                 * @type string
+                 */
+                "button_text":"モナコインアドレスの取得",
+                /**
+                 * 言語を設定します "ja","en"のみ可能です。
+                 * @type string
+                 */
+                "language":"ja",
+                /**
+                 * 処理を開始する際に実行される関数です。
+                 * Twitterのscreen_nameを返却する必要があります。
+                 * @returns {string} Twitterのscreen_nameを返却します
+                 */
+                "twitter_screen_name":function(){
+                    document.getElementById("monacoin_address").value = "";//ロード中は非表示
+                    return document.getElementById("twitter_screen_name").value;
+                },
+                /**
+                 * Monacoin口座を読み込んだ結果を取得します
+                 * @param {string} status "success"か"error"を返します
+                 * @param {string} address　正常に取得できた場合、Monacoinの口座を返します
+                 * @param {string} errorText エラーが発生した場合、エラー内容を返します
+                 * @returns {void}
+                 */
+                "get_address":function(status,address,errorText){
+                  switch(status){
+                      case "success":
+                          document.getElementById("monacoin_address").value = address;
+                      break;
+                      case "error":
+                          document.getElementById("monacoin_address").value = errorText;
+                      break;
+                  }
+              }
+            });
+          </script>
+  </body>
+</html>
