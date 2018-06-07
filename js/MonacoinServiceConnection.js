@@ -4,7 +4,7 @@
  * LICENSE: MIT License
  * 
  * twitter_screen_nameを元に、該当のサービスのモナコイン口座情報を取得します
- * CROSを使用しているため、
+ * CORSを使用しているため、
  * 対象のサーバーのAPIは、Headerで、"Access-Control-Allow-Origin:*"を返す必要があります
  * 
  */
@@ -17,7 +17,7 @@ var MonacoinServiceConnection = null;
                 "ja":"Monappy",
                 "en":"Monappy"
             },
-            "img":"https://monappy.jp/img/monappy_logos.png",
+            "img":"",
             "url":"https://api.monappy.jp/v1/users/get_nickname?twitter_id=$twitter_screen_name",
             "response":{
                 "success_flags":{
